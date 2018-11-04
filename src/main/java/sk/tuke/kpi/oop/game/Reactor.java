@@ -6,6 +6,7 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 import sk.tuke.kpi.oop.game.actions.PerpetualReactorHeating;
 import sk.tuke.kpi.oop.game.tools.Hammer;
+import sk.tuke.kpi.oop.game.tools.Mjolnir;
 
 public class Reactor extends AbstractActor implements Switchable {
     private int temperature;
@@ -142,6 +143,35 @@ public class Reactor extends AbstractActor implements Switchable {
         }
     }
 
+    public void repairWith(Mjolnir hammer) {
+        if (hammer == null || damage == 0 || damage == 100) {
+            return;
+        }
+
+        hammer.use();
+
+        double minInterval = 2000;
+        double maxInterval = 6000;
+
+        int tempDamage = damage - 50;
+        damage = tempDamage > 0 ? tempDamage : 0;
+
+        int tempTemperature = (int)(((maxInterval - minInterval) * tempDamage / 100 ) + minInterval);
+        if (tempTemperature < temperature) {
+            temperature = tempTemperature;
+        }
+
+        updateAnimation();
+
+    }
+
+
+
+
+
+
+
+
     public void repairWith(Hammer hammer) {
         if (hammer == null || damage == 0 || damage == 100) {
             return;
@@ -164,6 +194,12 @@ public class Reactor extends AbstractActor implements Switchable {
 
     }
 
+
+
+
+
+
+
     public void addLight(Light light) {
         this.light = light;
         this.light.setElectricityFlow(isRunning);
@@ -179,3 +215,4 @@ public class Reactor extends AbstractActor implements Switchable {
         new PerpetualReactorHeating(1).scheduleOn(this);
     }
 }
+
