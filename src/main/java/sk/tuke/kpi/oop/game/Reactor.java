@@ -50,6 +50,7 @@ public class Reactor extends AbstractActor implements Switchable {
     public boolean isOn() {
         return isRunning;
     }
+
     public void turnOn() {
         if (damage == 100) {
             return;
@@ -58,7 +59,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
 
 
-        Animation();
+        motion();
     }
 
     public void turnOff() {
@@ -66,7 +67,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
 
 
-        Animation();
+        motion();
     }
 
     public void increaseTemperature(int increment) {
@@ -89,7 +90,7 @@ public class Reactor extends AbstractActor implements Switchable {
                 double tempDamage = (temperature - 2000) / (6000 - 2000) * 100.0;
                 if (tempDamage < 100) {
                     damage = (int)tempDamage;
-                    Animation();
+                    motion();
                 } else {
                     damage = 100;
                     turnOff();
@@ -114,7 +115,7 @@ public class Reactor extends AbstractActor implements Switchable {
                 temperature = 0;
             }
 
-            Animation();
+            motion();
         }
 
 
@@ -123,7 +124,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
 
 
-    private void Animation() {
+    private void motion() { //motion bola Animation
         if (damage == 100) {
             setAnimation(brokenAnimation);
         } else if (!isRunning) {
@@ -160,7 +161,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
         }
 
-        Animation();
+        motion();
 
     }
 
@@ -189,7 +190,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
         }
 
-        Animation();
+        motion();
 
     }
 
@@ -215,7 +216,7 @@ public class Reactor extends AbstractActor implements Switchable {
 
         }
 
-        Animation();
+        motion();
 
 
 
@@ -227,12 +228,13 @@ public class Reactor extends AbstractActor implements Switchable {
 
 
 
-    public void addLight(Light light) {
+    public void addDevice(EnergyConsumer setPowered) {
         this.light = light;
         this.light.setElectricityFlow(isRunning);
     }
 
-    public void removeLight() {
+    public void removeDevice() {
+
         light = null;
     }
 

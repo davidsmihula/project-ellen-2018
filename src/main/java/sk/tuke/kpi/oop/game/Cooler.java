@@ -16,6 +16,13 @@ public class Cooler extends AbstractActor implements Switchable {
         this.reactor = reactor;
         setAnimation(new Animation("sprites/fan.png", 32, 32, 0.2f, Animation.PlayMode.LOOP_PINGPONG));
         turnOff();
+
+        if(this.reactor==null ){
+
+            getAnimation().play();
+        }
+
+
     }
 
     public void turnOn() {
@@ -45,4 +52,7 @@ public class Cooler extends AbstractActor implements Switchable {
         super.addedToScene(scene);
         new Loop<>(new Invoke(this::coolReactor)).scheduleOn(this);
     }
+
+
+
 }
