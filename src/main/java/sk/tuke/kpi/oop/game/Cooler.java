@@ -19,14 +19,20 @@ public class Cooler extends AbstractActor implements Switchable {
 
         if(this.reactor==null ){
 
-            getAnimation().play();
+           nula();
         }
 
 
     }
 
+public void nula(){
+    isOn = false;
+    getAnimation().play();
+    }
+
+
     public void turnOn() {
-        isOn = true;
+        isOn = false;
         getAnimation().play();
 
     }

@@ -9,8 +9,8 @@ public class DefectiveLight extends Light {
     private void simulateDefectiveLight() {
         int number = (int) (Math.random() * 20);
         if (number == 1) {
-            turnOn();
-        }
+          turnOn();
+        }else{turnOff();}
     }
 
     @Override
@@ -18,4 +18,7 @@ public class DefectiveLight extends Light {
         super.addedToScene(scene);
         new Loop<>(new Invoke(this::simulateDefectiveLight)).scheduleOn(this);
     }
+
+
+
 }

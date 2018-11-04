@@ -1,4 +1,4 @@
-package sk.tuke.kpi.oop.game.sk.tuke.kpi.oop.game.tools;
+package sk.tuke.kpi.oop.game.tools;
 
 public interface Usable {
 

@@ -17,20 +17,20 @@ public class PowerSwitch extends AbstractActor {
 
 
 
-    public void SwitchOn(){
+    public void switchOn(){
 
         device.turnOn();
         updateAnimation();
     }
-    public void SwitchOff(){
+    public void switchOff(){
 
         device.turnOff();
         updateAnimation();
     }
 
-    public int  Switchable;
+    public int switchable;
 
-    public sk.tuke.kpi.oop.game.Switchable getDevice() {
+    public Switchable getDevice() {
         return device;
     }
 
